@@ -11,6 +11,13 @@ export const GlobalContext = createContext(initialState);
 export const GlobalProvider = ({ children }) => {
     const [state, dispatch] = useReducer(AppReducer, initialState);
 
+    const addWord = word => {
+        dispatch({
+            type: "ADD_WORD",
+            payload: word
+        });
+    }
+
     const deleteWord = word => {
         dispatch({
             type: "DELETE_WORD",
@@ -19,7 +26,7 @@ export const GlobalProvider = ({ children }) => {
     }
 
     return (
-        <GlobalContext.Provider value={{words: state.words, deleteWord}}>
+        <GlobalContext.Provider value={{words: state.words, addWord, deleteWord}}>
             {children}
         </GlobalContext.Provider>
     );
