@@ -6,7 +6,13 @@ const WordsList = () => {
     const {words, deleteWord, generateCrossword, reset} = useContext(GlobalContext);
 
     const handleGenerate = () => {
-        console.log(words);
+        console.log("Generate clicked...");
+        if (words.length < 2) {
+            console.log("You can not generate a crossword with less than 2 words!");
+
+            return;
+        }
+
         generateCrossword();
     }
 
