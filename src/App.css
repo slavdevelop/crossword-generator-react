@@ -53,3 +53,17 @@ input {
   margin: 2rem;
   min-height: 2rem;
 }
+
+.crossword-word {
+  margin-right: 2rem;
+}
+
+.crossword-character {
+  display: inline-block;
+  text-transform: capitalize;
+  color: white;
+  border: 1px solid white;
+  height: 1.5rem;
+  width: 1.5rem;
+  line-height: 1.5rem;
+}
