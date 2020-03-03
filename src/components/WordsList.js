@@ -3,11 +3,11 @@ import React, {useContext} from 'react';
 import {GlobalContext} from "../context/GlobalState";
 
 const WordsList = () => {
-    const {words} = useContext(GlobalContext);
+    const {words, deleteWord} = useContext(GlobalContext);
 
     return (
         <div className="words-list">
-            {words.map((word, index) => <span className="word" key={index} >{word}</span>)}
+            {words.map((word, index) => <span onClick={() => deleteWord(word)} className="word" key={index} >{word}</span>)}
         </div>
     )
 }

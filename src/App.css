@@ -41,3 +41,7 @@ input {
   background-color: rgb(204, 204, 204);
   margin: 1rem;
 }
+
+.word:hover {
+  cursor: pointer;
+}
