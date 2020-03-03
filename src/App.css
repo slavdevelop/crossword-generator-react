@@ -31,6 +31,7 @@ input {
 .words-list {
   display: flex;
   flex-wrap: wrap;
+  min-height: 2rem;
   background-color: rgb(109, 109, 109);
   padding: 2rem;
   margin: 2rem;
@@ -44,4 +45,11 @@ input {
 
 .word:hover {
   cursor: pointer;
+}
+
+.crossword-container {
+  background-color: rgb(109, 109, 109);
+  padding: 2rem;
+  margin: 2rem;
+  min-height: 2rem;
 }

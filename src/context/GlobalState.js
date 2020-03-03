@@ -3,7 +3,8 @@ import React, {createContext, useReducer} from 'react';
 import AppReducer from "./AppReducer";
 
 const initialState = {
-    words: ['amazing', 'awesome', 'magic', 'outstanding', 'umbrella', 'test', 'words', 'any', 'kind', 'of', 'characters']
+    words: [], //['amazing', 'awesome', 'magic', 'outstanding', 'umbrella', 'test', 'words', 'any', 'kind', 'of', 'characters'],
+    isCrosswordGenerated: false
 };
 
 export const GlobalContext = createContext(initialState);
@@ -25,8 +26,23 @@ export const GlobalProvider = ({ children }) => {
         });
     }
 
+    const generateCrossword = () => {
+        dispatch({
+            type: "GENERATE_CROSSWORD"
+        });
+    }
+
+    const reset = () => {
+        dispatch({
+            type: "RESET"
+        });
+    }
+
     return (
-        <GlobalContext.Provider value={{words: state.words, addWord, deleteWord}}>
+        <GlobalContext.Provider value={{
+            words: state.words, isCrosswordGenerated: state.isCrosswordGenerated,
+            addWord, deleteWord, generateCrossword, reset
+        }}>
             {children}
         </GlobalContext.Provider>
     );
