@@ -48,9 +48,6 @@ input {
 }
 
 .crossword-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
   background-color: rgb(109, 109, 109);
   padding: 1rem;
   margin: 2rem;
@@ -60,11 +57,13 @@ input {
 div.row {
   height: 1.5rem;
   display: flex;
+  justify-content: center;
 }
 
 .crossword-character {
   display: inline-block;
   text-transform: capitalize;
+  font-weight: bold;
   color: white;
   border: 1px solid white;
   height: 1.5rem;
