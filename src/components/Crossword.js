@@ -2,6 +2,8 @@ import React, {useContext} from 'react';
 
 import {GlobalContext} from "../context/GlobalState";
 
+import {getCharsCoordinates} from "../core";
+
 const rows = 20;
 const cols = 20;
 
@@ -138,33 +140,6 @@ const Crossword = () => {
             ))}
         </div>
     )
-}
-
-function getCharsCoordinates(wordObject) {
-    let charObjects = [];
-
-    for (let i = 0; i < wordObject.length; i++) {
-        let newCharObj = {
-            char: wordObject.text.split("")[i]
-        };
-        
-        if (i === 0) {
-            newCharObj["rowNumber"] = wordObject.startRow;
-            newCharObj["colNumber"] = wordObject.startCol;
-        } else {
-            if (wordObject.isHorizontal) {
-                newCharObj["rowNumber"] = wordObject.startRow;
-                newCharObj["colNumber"] = wordObject.startCol + i;
-            } else {
-                newCharObj["rowNumber"] = wordObject.startRow + i;
-                newCharObj["colNumber"] = wordObject.startCol;
-            }
-        }
-
-        charObjects.push(newCharObj);
-    }
-
-    return charObjects;
 }
 
 export default Crossword;

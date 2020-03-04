@@ -3,7 +3,7 @@ import React, {createContext, useReducer} from 'react';
 import AppReducer from "./AppReducer";
 
 const initialState = {
-    words: ['parking', 'tree', 'go', 'amazing', 'awesome', 'magician'],// 'outstanding', 'umbrella', 'testing', 'words', 'anything', 'kind', 'offline', 'characters'],
+    words: ['parking', 'tree', 'testing', 'characters'],
     isCrosswordGenerated: false
 };
 
