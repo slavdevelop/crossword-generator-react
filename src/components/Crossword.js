@@ -52,29 +52,19 @@ const Crossword = () => {
                 extendedWord.text.split("").forEach((extendedChar, extendedCharIndex) => {
                     charArray.forEach((newChar, newCharIndex) => {
                         if(extendedChar === newChar) {
-                            let exCharRow;
-                            let exCharCol;
-
                             let newWordStartRow;
                             let newWordStartCol;
 
                             if(extendedWord.isHorizontal) {
-                                exCharRow = extendedWord.startRow;
-                                exCharCol = extendedWord.startCol + extendedCharIndex;
-
                                 newWordStartRow = extendedWord.startRow - newCharIndex;
-                                newWordStartCol = exCharCol;
+                                newWordStartCol = extendedWord.startCol + extendedCharIndex;
                             } else {
-                                exCharRow = extendedWord.startRow + extendedCharIndex;
-                                exCharCol = extendedWord.startCol;
-
-                                newWordStartRow = exCharRow;
+                                newWordStartRow = extendedWord.startRow + extendedCharIndex;
                                 newWordStartCol = extendedWord.startCol - newCharIndex;
                             }
 
                             console.log(`Extended word start coordinates - SR ${extendedWord.startRow} SC ${extendedWord.startCol}`);
                             console.log(`Extended char index - ${extendedCharIndex}`);
-                            console.log(`exCharRow - ${exCharRow} | exCharCol - ${exCharCol}`);
                             console.log(`new char index - ${newCharIndex}`);
                             console.log(`E - ${extendedWord.text} | N - ${wordObject.text} | MATCH => ${newChar}`);
                             console.log(`Should be horizontal - ${!extendedWord.isHorizontal}`);
@@ -82,7 +72,6 @@ const Crossword = () => {
                             console.log('-------------------------------');
 
                             wordObject["isHorizontal"] = !extendedWord.isHorizontal;
-
                             wordObject["startRow"] = newWordStartRow;
                             wordObject["startCol"] = newWordStartCol;
 
@@ -93,8 +82,6 @@ const Crossword = () => {
             });
         }
     }
-
-    console.log(extendedWordsArray);
 
     const crds = [];
     
@@ -132,10 +119,7 @@ const Crossword = () => {
         <div className="crossword-container">
             {grid.map((rowElement, rowNumber) => (
                     <div className={`row row-${rowNumber}`}>
-                        {rowElement.map((colElement, colNumber) => {
-
-                            return <Box char={colElement} row={rowNumber} col={colNumber} />
-                        })}
+                        {rowElement.map((colElement, colNumber) => <Box char={colElement} row={rowNumber} col={colNumber} />)}
                     </div>
             ))}
         </div>
