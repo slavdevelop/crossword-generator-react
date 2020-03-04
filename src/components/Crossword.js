@@ -94,24 +94,36 @@ const Crossword = () => {
 
     console.log(extendedWordsArray);
 
+    const crds = [];
+    
+    extendedWordsArray.forEach(word => {
+        const obj = getCharsCoordinates(word);
+
+        crds.push(obj);
+    });
 
     const createGrid = () => {
         const grid = [];
 
         for (let row = 0; row < rows; row++) {
             grid.push(new Array(cols));
-            
+
             for (let col = 0; col < cols; col++) {
                 grid[row][col] = " ";
             }
-            
         }
-
+        
         return grid;
     }
 
     const grid = createGrid();
-    
+
+    crds.forEach(c => {
+        c.forEach(o => {
+            grid[o.rowNumber][o.colNumber] = o.char;
+        })
+    })
+
     if (!isCrosswordGenerated) return '';
 
     return (
@@ -126,6 +138,33 @@ const Crossword = () => {
             ))}
         </div>
     )
+}
+
+function getCharsCoordinates(wordObject) {
+    let charObjects = [];
+
+    for (let i = 0; i < wordObject.length; i++) {
+        let newCharObj = {
+            char: wordObject.text.split("")[i]
+        };
+        
+        if (i === 0) {
+            newCharObj["rowNumber"] = wordObject.startRow;
+            newCharObj["colNumber"] = wordObject.startCol;
+        } else {
+            if (wordObject.isHorizontal) {
+                newCharObj["rowNumber"] = wordObject.startRow;
+                newCharObj["colNumber"] = wordObject.startCol + i;
+            } else {
+                newCharObj["rowNumber"] = wordObject.startRow + i;
+                newCharObj["colNumber"] = wordObject.startCol;
+            }
+        }
+
+        charObjects.push(newCharObj);
+    }
+
+    return charObjects;
 }
 
 export default Crossword;
