@@ -47,18 +47,52 @@ const Crossword = () => {
 
             extendedWordsArray.forEach(extendedWord => {
 
-                extendedWord.text.split("").forEach(extendedChar => {
-                    charArray.forEach(char => {
-                        if(extendedChar === char) {
-                            console.log(`Match! NW - ${wordObject.text} | EW - ${extendedWord.text} | char matched => ${char}`)
+                extendedWord.text.split("").forEach((extendedChar, extendedCharIndex) => {
+                    charArray.forEach((newChar, newCharIndex) => {
+                        if(extendedChar === newChar) {
+                            let exCharRow;
+                            let exCharCol;
+
+                            let newWordStartRow;
+                            let newWordStartCol;
+
+                            if(extendedWord.isHorizontal) {
+                                exCharRow = extendedWord.startRow;
+                                exCharCol = extendedWord.startCol + extendedCharIndex;
+
+                                newWordStartRow = extendedWord.startRow - newCharIndex;
+                                newWordStartCol = exCharCol;
+                            } else {
+                                exCharRow = extendedWord.startRow + extendedCharIndex;
+                                exCharCol = extendedWord.startCol;
+
+                                newWordStartRow = exCharRow;
+                                newWordStartCol = extendedWord.startCol - newCharIndex;
+                            }
+
+                            console.log(`Extended word start coordinates - SR ${extendedWord.startRow} SC ${extendedWord.startCol}`);
+                            console.log(`Extended char index - ${extendedCharIndex}`);
+                            console.log(`exCharRow - ${exCharRow} | exCharCol - ${exCharCol}`);
+                            console.log(`new char index - ${newCharIndex}`);
+                            console.log(`E - ${extendedWord.text} | N - ${wordObject.text} | MATCH => ${newChar}`);
+                            console.log(`Should be horizontal - ${!extendedWord.isHorizontal}`);
+                            console.log(`New word start coordinates - SR ${newWordStartRow} SC ${newWordStartCol}`);
+                            console.log('-------------------------------');
+
+                            wordObject["isHorizontal"] = !extendedWord.isHorizontal;
+
+                            wordObject["startRow"] = newWordStartRow;
+                            wordObject["startCol"] = newWordStartCol;
+
+                            extendedWordsArray.push(wordObject);
                         }
                     })
                 })
-
-            })
+            });
         }
-        
     }
+
+    console.log(extendedWordsArray);
 
 
     const createGrid = () => {
